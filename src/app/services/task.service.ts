@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import {
   HttpClient
 } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,43 +11,43 @@ import {
 
 export class TaskService {
 
-  private api =
-    'http://localhost:8080/tasks';
+  private apiUrl =
+    `${environment.apiUrl}/tasks`;
 
   constructor(private http: HttpClient) {}
 
   // ✅ SEARCH TASKS
- searchTasks(
-  projectId: number,
-  keyword: string,
-  status: string,
-  page: number,
-  size: number
-) {
+  searchTasks(
+    projectId: number,
+    keyword: string,
+    status: string,
+    page: number,
+    size: number
+  ) {
 
-  return this.http.get(
+    return this.http.get(
 
-    `${this.api}/search/${projectId}`,
+      `${this.apiUrl}/search/${projectId}`,
 
-    {
+      {
 
-      params: {
+        params: {
 
-        keyword: keyword || '',
+          keyword: keyword || '',
 
-        status: status || '',
+          status: status || '',
 
-        page,
+          page,
 
-        size
+          size
+
+        }
 
       }
 
-    }
+    );
 
-  );
-
-}
+  }
 
   // ✅ GET TASKS
   getTasks(
@@ -57,7 +58,7 @@ export class TaskService {
 
     return this.http.get(
 
-      `${this.api}/project/${projectId}?page=${page}&size=${size}`
+      `${this.apiUrl}/project/${projectId}?page=${page}&size=${size}`
 
     );
 
@@ -68,7 +69,7 @@ export class TaskService {
 
     return this.http.get(
 
-      `${this.api}/${id}`
+      `${this.apiUrl}/${id}`
 
     );
 
@@ -79,7 +80,7 @@ export class TaskService {
 
     return this.http.post(
 
-      this.api,
+      this.apiUrl,
 
       data
 
@@ -92,7 +93,7 @@ export class TaskService {
 
     return this.http.put(
 
-      `${this.api}/${id}`,
+      `${this.apiUrl}/${id}`,
 
       data
 
@@ -105,7 +106,7 @@ export class TaskService {
 
     return this.http.delete(
 
-      `${this.api}/${id}`,
+      `${this.apiUrl}/${id}`,
 
       {
 
@@ -118,15 +119,14 @@ export class TaskService {
   }
 
   // ✅ GET STATUS ENUMS
-getStatuses() {
+  getStatuses() {
 
-  return this.http.get<string[]>(
+    return this.http.get<string[]>(
 
-    'http://localhost:8080/tasks/statuses'
+      `${this.apiUrl}/statuses`
 
-  );
-
-}
+    );
 
   }
 
+}

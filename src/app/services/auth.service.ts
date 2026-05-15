@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient }
+from '@angular/common/http';
 
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode }
+from 'jwt-decode';
+
+import { environment }
+from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +16,7 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
 
   private apiUrl =
-    'http://localhost:8080/auth';
+    `${environment.apiUrl}/auth`;
 
   constructor(
     private http: HttpClient
@@ -65,19 +70,13 @@ export class AuthService {
 
   saveToken(token: string) {
 
-    // SAVE JWT
-
     localStorage.setItem(
       'token',
       token
     );
 
-    // DECODE JWT
-
     const decoded: any =
       jwtDecode(token);
-
-    // SAVE ROLE
 
     localStorage.setItem(
       'role',

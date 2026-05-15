@@ -5,13 +5,17 @@ import {
   HttpHeaders
 } from '@angular/common/http';
 
+import { environment }
+from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProjectService {
 
   private api =
-    'http://localhost:8080/projects';
+    `${environment.apiUrl}/projects`;
 
   constructor(private http: HttpClient) {}
 
