@@ -1,0 +1,224 @@
+<div class="modal-container">
+
+    <!-- CLOSE BUTTON -->
+
+    <button
+      class="close-btn"
+      (click)="closeModal()"
+    >
+        ×
+    </button>
+
+    <!-- HEADER -->
+
+    <div class="modal-header">
+
+        <h1>Create Task</h1>
+
+        <p>
+            Add a new task to your project
+        </p>
+
+    </div>
+
+    <!-- FORM -->
+
+    <form
+      class="task-form"
+      (ngSubmit)="createTask()"
+    >
+
+        <!-- TASK TITLE -->
+
+        <div class="form-group">
+
+            <label>
+                Task Title
+            </label>
+
+            <input
+              type="text"
+              placeholder="Enter task title"
+              [(ngModel)]="task.title"
+              name="title"
+              required
+            />
+
+        </div>
+
+        <!-- DESCRIPTION -->
+
+        <div class="form-group">
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+              placeholder="Enter task description"
+              [(ngModel)]="task.description"
+              name="description"
+              required
+            ></textarea>
+
+        </div>
+
+        <!-- DUE DATE -->
+
+        <div class="form-group">
+
+            <label>
+                Due Date
+            </label>
+
+            <input
+              type="date"
+              [(ngModel)]="task.dueDate"
+              name="dueDate"
+              required
+            />
+
+        </div>
+
+        <!-- STATUS -->
+
+        <div class="form-group">
+
+            <label>
+                Status
+            </label>
+
+            <select
+              [(ngModel)]="task.status"
+              name="status"
+            >
+
+                <option
+                  *ngFor="let status of statuses"
+                  [value]="status"
+                >
+
+                    {{ status }}
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- PRIORITY -->
+
+        <div class="form-group">
+
+            <label>
+                Priority
+            </label>
+
+            <select
+              [(ngModel)]="task.priority"
+              name="priority"
+            >
+
+                <option
+                  *ngFor="let priority of priorities"
+                  [value]="priority"
+                >
+
+                    {{ priority }}
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- DESIGNATION -->
+
+        <div class="form-group">
+
+            <label>
+                Designation
+            </label>
+
+            <select
+              [(ngModel)]="selectedDesignation"
+              (change)="filterUsersByDesignation()"
+              name="designation"
+            >
+
+                <option value="">
+                    Select Designation
+                </option>
+
+                <option
+                  *ngFor="let designation of designations"
+                  [value]="designation"
+                >
+
+                    {{ designation }}
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- ASSIGN USER -->
+
+        <div class="form-group">
+
+            <label>
+                Assign User
+            </label>
+
+            <select
+              [(ngModel)]="task.assignedUserId"
+              name="assignedUserId"
+              required
+            >
+
+                <option [ngValue]="null">
+                    Select User
+                </option>
+
+                <option
+                  *ngFor="let user of filteredUsers"
+                  [ngValue]="user.id"
+                >
+
+                    {{ user.name }}
+
+                </option>
+
+            </select>
+
+        </div>
+
+        <!-- ACTION BUTTONS -->
+
+        <div class="modal-actions">
+
+            <button
+              type="button"
+              class="cancel-btn"
+              (click)="closeModal()"
+            >
+
+                Cancel
+
+            </button>
+
+            <button
+              type="submit"
+              class="create-btn"
+            >
+
+                Create Task
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

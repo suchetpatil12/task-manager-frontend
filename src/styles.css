@@ -1,1 +1,425 @@
-/* You can add global styles to this file, and also import other style files */
+/* =========================================
+   GLOBAL
+========================================= */
+
+html,
+body {
+
+    height: 100%;
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+        Roboto,
+        "Helvetica Neue",
+        sans-serif;
+
+    overflow-x: hidden;
+
+    background:
+        #f8fafc;
+}
+
+/* =========================================
+   SMOOTH SCROLL
+========================================= */
+
+html {
+
+    scroll-behavior: smooth;
+}
+
+/* =========================================
+   DARK THEME
+========================================= */
+
+body.dark-theme {
+
+    background:
+        #0f172a !important;
+
+    color:
+        #f8fafc !important;
+}
+
+/* =========================================
+   FULL PAGE DARK MODE
+========================================= */
+
+body.dark-theme .dashboard-page,
+body.dark-theme .tasks-page,
+body.dark-theme .projects-page,
+body.dark-theme .create-task-page,
+body.dark-theme .edit-task-page {
+
+    background:
+        linear-gradient(
+            180deg,
+            #0f172a,
+            #111827
+        ) !important;
+
+    color:
+        white !important;
+
+    min-height:
+        100vh;
+}
+
+/* =========================================
+   TEXT
+========================================= */
+
+body.dark-theme h1,
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme p,
+body.dark-theme span,
+body.dark-theme td,
+body.dark-theme th,
+body.dark-theme label {
+
+    color:
+        #f8fafc !important;
+}
+
+/* =========================================
+   SUBTEXT
+========================================= */
+
+body.dark-theme .tasks-header p,
+body.dark-theme .dashboard-header p,
+body.dark-theme .projects-header p {
+
+    color:
+        #94a3b8 !important;
+}
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+body.dark-theme mat-toolbar {
+
+    background:
+        linear-gradient(
+            90deg,
+            #0f172a,
+            #111827
+        ) !important;
+
+    color:
+        white !important;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.05);
+}
+
+/* =========================================
+   NAV LINKS
+========================================= */
+
+body.dark-theme mat-toolbar a,
+body.dark-theme mat-toolbar button,
+body.dark-theme .nav-links a {
+
+    color:
+        white !important;
+}
+
+/* =========================================
+   CARDS
+========================================= */
+
+body.dark-theme .table-card,
+body.dark-theme .chart-card,
+body.dark-theme .dashboard-card,
+body.dark-theme .project-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,41,59,0.95),
+            rgba(15,23,42,0.92)
+        ) !important;
+
+    color:
+        white !important;
+
+    border:
+        1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 12px 40px rgba(0,0,0,0.35);
+}
+
+/* =========================================
+   TABLE
+========================================= */
+
+body.dark-theme table {
+
+    background:
+        transparent !important;
+}
+
+body.dark-theme td,
+body.dark-theme th {
+
+    background:
+        transparent !important;
+
+    border-color:
+        rgba(255,255,255,0.08) !important;
+}
+
+/* =========================================
+   INPUTS
+========================================= */
+
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+
+    background:
+        #1e293b !important;
+
+    color:
+        white !important;
+
+    border:
+        1px solid rgba(255,255,255,0.08) !important;
+}
+
+/* =========================================
+   INPUT PLACEHOLDER
+========================================= */
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+
+    color:
+        #94a3b8 !important;
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+
+body.dark-theme .pagination-box button {
+
+    background:
+        #1e293b !important;
+
+    color:
+        white !important;
+}
+
+/* =========================================
+   MATERIAL SELECT
+========================================= */
+
+body.dark-theme .mat-mdc-select-value,
+body.dark-theme .mat-mdc-select-arrow {
+
+    color:
+        white !important;
+}
+
+/* =========================================
+   MATERIAL DROPDOWN
+========================================= */
+
+body.dark-theme .mat-mdc-select-panel {
+
+    background:
+        #1e293b !important;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+body.dark-theme .mat-mdc-option {
+
+    color:
+        white !important;
+}
+
+body.dark-theme .mat-mdc-option:hover {
+
+    background:
+        rgba(255,255,255,0.06) !important;
+}
+
+/* =========================================
+   SNACKBAR
+========================================= */
+
+body.dark-theme .success-snackbar {
+
+    background:
+        #10b981 !important;
+
+    color:
+        white !important;
+}
+
+body.dark-theme .error-snackbar {
+
+    background:
+        #ef4444 !important;
+
+    color:
+        white !important;
+}
+
+/* =========================================
+   DIALOG BACKDROP
+========================================= */
+
+.cdk-overlay-dark-backdrop {
+
+    background:
+        rgba(2,6,23,0.72) !important;
+
+    backdrop-filter:
+        blur(8px);
+}
+
+/* =========================================
+   DIALOG CENTER FIX
+========================================= */
+
+.cdk-overlay-pane {
+
+    display:
+        flex !important;
+
+    align-items:
+        center !important;
+
+    justify-content:
+        center !important;
+
+    max-width:
+        95vw !important;
+
+    max-height:
+        95vh !important;
+}
+
+/* =========================================
+   REMOVE MATERIAL DIALOG DEFAULT STYLES
+========================================= */
+
+.custom-dialog-container .mat-mdc-dialog-container {
+
+    padding:
+        0 !important;
+
+    background:
+        transparent !important;
+
+    overflow:
+        hidden !important;
+
+    border-radius:
+        28px !important;
+
+    box-shadow:
+        none !important;
+}
+
+.custom-dialog-container .mdc-dialog__surface {
+
+    background:
+        transparent !important;
+
+    overflow:
+        hidden !important;
+
+    border-radius:
+        28px !important;
+
+    box-shadow:
+        none !important;
+}
+
+/* =========================================
+   REMOVE DIALOG CONTENT SCROLL BUG
+========================================= */
+
+.mat-mdc-dialog-content {
+
+    max-height:
+        unset !important;
+
+    overflow:
+        hidden !important;
+
+    padding:
+        0 !important;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+::-webkit-scrollbar {
+
+    width:
+        8px;
+
+    height:
+        8px;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background:
+        rgba(100,116,139,0.4);
+
+    border-radius:
+        999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(100,116,139,0.7);
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+* {
+
+    box-sizing:
+        border-box;
+}
+
+/* =========================================
+   BUTTON SMOOTHNESS
+========================================= */
+
+button {
+
+    transition:
+        all 0.25s ease;
+}
+
+/* =========================================
+   INPUT SMOOTHNESS
+========================================= */
+
+input,
+textarea,
+select {
+
+    transition:
+        all 0.25s ease;
+}

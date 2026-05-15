@@ -1,0 +1,60 @@
+<div class="projects-page">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Projects</h1>
+            <p>
+                Manage all your projects and tasks
+            </p>
+        </div>
+
+        <button
+  class="create-btn"
+  routerLink="/task-manager-ui/src/app/components/create-project-modal/create-project-modal.component"
+  (click)="openCreateProjectModal()"
+  >
+
+  + Create Project
+
+</button>
+
+    </div>
+
+    <div class="projects-grid">
+
+        <mat-card
+                class="project-card"
+                *ngFor="let project of projects"
+                [routerLink]="['/tasks', project.id]"
+        >
+
+            <div class="project-top">
+
+                <div class="project-icon">
+                    📁
+                </div>
+
+                <div>
+                    <h2>{{ project.name }}</h2>
+
+                    <p>
+                        {{ project.description }}
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="project-footer">
+
+                <span>
+                    View Tasks →
+                </span>
+
+            </div>
+
+        </mat-card>
+
+    </div>
+
+</div>

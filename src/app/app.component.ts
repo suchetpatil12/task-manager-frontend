@@ -1,12 +1,32 @@
 import { Component } from '@angular/core';
+
 import { RouterOutlet } from '@angular/router';
+
+import { CommonModule } from '@angular/common';
+
+
+
+import { LoaderComponent } from './components/loader/loader.component';
+
+import { LoadingService } from './services/loading.service';
+import { NavbarComponent } from './layout/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    NavbarComponent,
+    LoaderComponent
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'task-manager-ui';
+
+  constructor(
+    public loadingService: LoadingService
+  ) {}
+
 }

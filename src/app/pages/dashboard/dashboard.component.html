@@ -1,0 +1,117 @@
+<div class="dashboard-page">
+
+    <!-- HEADER -->
+
+    <div class="dashboard-header">
+
+        <h1>
+            Dashboard
+        </h1>
+
+        <p>
+            Welcome to Task Manager Analytics
+        </p>
+
+    </div>
+
+    <!-- ANALYTICS CARDS -->
+
+    <div class="dashboard-grid">
+
+        <!-- PROJECTS -->
+
+        <mat-card class="dashboard-card projects-card">
+
+            <h2>
+                Total Projects
+            </h2>
+
+            <h1>
+                {{ dashboardData.totalProjects }}
+            </h1>
+
+        </mat-card>
+
+        <!-- TASKS -->
+
+        <mat-card class="dashboard-card tasks-card">
+
+            <h2>
+                Total Tasks
+            </h2>
+
+            <h1>
+                {{ dashboardData.totalTasks }}
+            </h1>
+
+        </mat-card>
+
+        <!-- COMPLETED -->
+
+        <mat-card class="dashboard-card completed-card">
+
+            <h2>
+                Completed Tasks
+            </h2>
+
+            <h1>
+                {{ dashboardData.completedTasks }}
+            </h1>
+
+        </mat-card>
+
+        <!-- PENDING -->
+
+        <mat-card class="dashboard-card pending-card">
+
+            <h2>
+                Pending Tasks
+            </h2>
+
+            <h1>
+                {{ dashboardData.pendingTasks }}
+            </h1>
+
+        </mat-card>
+
+        <!-- PROGRESS -->
+
+        <mat-card class="dashboard-card progress-card">
+
+            <h2>
+                In Progress
+            </h2>
+
+            <h1>
+                {{ dashboardData.inProgressTasks }}
+            </h1>
+
+        </mat-card>
+
+    </div>
+
+    <!-- CHART SECTION -->
+
+    <div class="chart-section">
+
+        <mat-card class="chart-card">
+
+            <h2>
+                Task Status Analytics
+            </h2>
+
+            <div class="chart-container">
+
+                <canvas
+      baseChart
+      [data]="pieChartData"
+      [type]="pieChartType">
+    </canvas>
+
+            </div>
+
+        </mat-card>
+
+    </div>
+
+</div>

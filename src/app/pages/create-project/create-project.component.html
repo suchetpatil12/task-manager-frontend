@@ -1,0 +1,52 @@
+<div class="create-project-page">
+
+    <div class="create-project-card">
+
+        <h1>
+            Create Project
+        </h1>
+
+        <p>
+            Create and manage your project workspace
+        </p>
+
+        <form
+          class="project-form"
+          (ngSubmit)="createProject()"
+        >
+
+            <!-- PROJECT NAME -->
+
+            <input
+              type="text"
+              placeholder="Project Name"
+              [(ngModel)]="project.name"
+              name="name"
+              required
+            />
+
+            <!-- DESCRIPTION -->
+
+            <textarea
+              placeholder="Project Description"
+              [(ngModel)]="project.description"
+              name="description"
+              required
+            ></textarea>
+
+            <!-- BUTTON -->
+
+            <button
+              type="submit"
+              class="create-btn"
+            >
+
+                Create Project
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

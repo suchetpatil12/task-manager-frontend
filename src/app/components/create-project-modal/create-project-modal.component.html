@@ -1,0 +1,99 @@
+<div class="modal-overlay">
+
+    <div class="modal-card">
+
+        <!-- HEADER -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>Create Project</h2>
+
+                <p>
+                    Create a new project workspace
+                </p>
+
+            </div>
+
+            <button
+              class="close-btn"
+              (click)="closeModal()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <!-- FORM -->
+
+        <form
+          class="project-form"
+          (ngSubmit)="createProject()"
+        >
+
+            <!-- PROJECT NAME -->
+
+            <div class="form-group">
+
+                <label>
+                    Project Name
+                </label>
+
+                <input
+                  type="text"
+                  placeholder="Enter project name"
+                  [(ngModel)]="project.name"
+                  name="name"
+                  required
+                />
+
+            </div>
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label>
+                    Description
+                </label>
+
+                <textarea
+                  placeholder="Enter project description"
+                  [(ngModel)]="project.description"
+                  name="description"
+                  required
+                ></textarea>
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="modal-actions">
+
+                <button
+                  type="button"
+                  class="cancel-btn"
+                  (click)="closeModal()"
+                >
+
+                    Cancel
+
+                </button>
+
+                <button
+                  type="submit"
+                  class="create-btn"
+                >
+
+                    Create Project
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

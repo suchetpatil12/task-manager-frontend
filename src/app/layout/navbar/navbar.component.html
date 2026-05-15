@@ -1,0 +1,49 @@
+<div class="navbar">
+
+    <!-- LOGO -->
+    <div class="logo">
+
+        Task Manager
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="nav-right">
+
+        <!-- SHOW ONLY AFTER LOGIN -->
+        <ng-container
+          *ngIf="isLoggedIn() && !isAuthPage()"
+        >
+
+            <a routerLink="/dashboard">
+                Dashboard
+            </a>
+
+            <a routerLink="/projects">
+                Projects
+            </a>
+
+            <button
+              class="logout-btn"
+              (click)="logout()"
+            >
+
+                Logout
+
+            </button>
+
+        </ng-container>
+
+        <!-- THEME -->
+        <button
+          class="theme-btn"
+          (click)="toggleTheme()"
+        >
+
+            🌙
+
+        </button>
+
+    </div>
+
+</div>
