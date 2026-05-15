@@ -1,59 +1,137 @@
-# TaskManagerUi
+# Enterprise Task Manager Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Modern Angular-based frontend for the Enterprise Task Management System.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- JWT Authentication
+- Role Based Access Control
+- Project Management
+- Task Management
+- Task Priority Management
+- Dashboard Analytics
+- Search & Filtering
+- Pagination
+- Designation Based User Assignment
+- Responsive Modern UI
+- Modal Based Forms
+- Dark Theme Dashboard
+
+---
+
+## Tech Stack
+
+### Frontend
+- Angular
+- TypeScript
+- Angular Material
+- HTML5
+- CSS3
+
+---
+
+## Modules
+
+### Authentication
+- Login
+- Register
+- JWT Token Handling
+
+### Dashboard
+- Total Projects
+- Total Tasks
+- Pending Tasks
+- Completed Tasks
+- In Progress Tasks
+- Analytics Charts
+
+### Projects
+- Create Project
+- Edit Project
+- Delete Project
+- Pagination
+- Search
+
+### Tasks
+- Create Task
+- Edit Task
+- Delete Task
+- Status Management
+- Priority Management
+- Search & Filtering
+- Designation Based User Assignment
+
+---
+
+## Installation
+
+### Clone Repository
+
+```bash
+git clone <FRONTEND_REPO_URL>
+```
+
+---
+
+## Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## Run Application
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Frontend will run on:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
+## Backend Requirement
+
+Backend should be running on:
+
+```text
+http://localhost:8080
 ```
 
-## Building
+---
 
-To build the project run:
+## Screenshots
 
-```bash
-ng build
-```
+### Login Page
+(Add Screenshot)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Dashboard
+(Add Screenshot)
 
-## Running unit tests
+### Projects
+(Add Screenshot)
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### Tasks
+(Add Screenshot)
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+## Future Enhancements
 
-For end-to-end (e2e) testing, run:
+- Kanban Board
+- Email Notifications
+- Activity Logs
+- File Attachments
+- Docker Deployment
+- Real-time Updates using WebSockets
 
-```bash
-ng e2e
-```
+---
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Author
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Suchet Patil
