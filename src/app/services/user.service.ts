@@ -2,44 +2,55 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
+import { environment }
+from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
-  
 
   private apiUrl =
-    'http://localhost:8080/users';
+    `${environment.apiUrl}/users`;
 
   constructor(
-    private http: HttpClient,
-    
+    private http: HttpClient
   ) {}
 
+  // ✅ GET ALL USERS
   getUsers() {
 
-    return this.http.get(this.apiUrl);
+    return this.http.get(
+
+      this.apiUrl
+
+    );
 
   }
 
-getDesignations() {
+  // ✅ GET DESIGNATIONS
+  getDesignations() {
 
-  return this.http.get<string[]>(
+    return this.http.get<string[]>(
 
-    'http://localhost:8080/users/designations'
+      `${this.apiUrl}/designations`
 
-  );
+    );
 
-}
+  }
 
-getUsersByDesignation(designation: string) {
+  // ✅ GET USERS BY DESIGNATION
+  getUsersByDesignation(
+    designation: string
+  ) {
 
-  return this.http.get(
+    return this.http.get(
 
-    `http://localhost:8080/users/by-designation/${designation}`
+      `${this.apiUrl}/by-designation/${designation}`
 
-  );
+    );
 
-}
+  }
 
 }
