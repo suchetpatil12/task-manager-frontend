@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import {
-  HttpClient
+
+  HttpClient,
+  HttpHeaders
+
 } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+
+import { environment }
+from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +19,27 @@ export class TaskService {
   private apiUrl =
     `${environment.apiUrl}/tasks`;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  // ✅ JWT HEADERS
+  private getHeaders() {
+
+    const token =
+      localStorage.getItem('token');
+
+    return {
+
+      headers: new HttpHeaders({
+
+        Authorization: `Bearer ${token}`
+
+      })
+
+    };
+
+  }
 
   // ✅ SEARCH TASKS
   searchTasks(
@@ -31,14 +56,13 @@ export class TaskService {
 
       {
 
+        headers: this.getHeaders().headers,
+
         params: {
 
           keyword: keyword || '',
-
           status: status || '',
-
           page,
-
           size
 
         }
@@ -58,7 +82,9 @@ export class TaskService {
 
     return this.http.get(
 
-      `${this.apiUrl}/project/${projectId}?page=${page}&size=${size}`
+      `${this.apiUrl}/project/${projectId}?page=${page}&size=${size}`,
+
+      this.getHeaders()
 
     );
 
@@ -69,7 +95,9 @@ export class TaskService {
 
     return this.http.get(
 
-      `${this.apiUrl}/${id}`
+      `${this.apiUrl}/${id}`,
+
+      this.getHeaders()
 
     );
 
@@ -82,7 +110,9 @@ export class TaskService {
 
       this.apiUrl,
 
-      data
+      data,
+
+      this.getHeaders()
 
     );
 
@@ -95,7 +125,9 @@ export class TaskService {
 
       `${this.apiUrl}/${id}`,
 
-      data
+      data,
+
+      this.getHeaders()
 
     );
 
@@ -110,6 +142,8 @@ export class TaskService {
 
       {
 
+        headers: this.getHeaders().headers,
+
         responseType: 'text'
 
       }
@@ -121,9 +155,13 @@ export class TaskService {
   // ✅ GET STATUS ENUMS
   getStatuses() {
 
-    return this.http.get<string[]>(
+    return this.http.get<string[]>((
 
       `${this.apiUrl}/statuses`
+
+    ),
+
+    this.getHeaders()
 
     );
 
