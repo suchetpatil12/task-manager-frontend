@@ -152,7 +152,7 @@ implements OnInit {
 
         },
 
-        error: (err) => {
+        error: (err: any) => {
 
           console.log(err);
 
@@ -161,6 +161,8 @@ implements OnInit {
       });
 
   }
+
+  
 
   // =========================================
   // LOAD PROJECTS

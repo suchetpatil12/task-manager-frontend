@@ -23,8 +23,11 @@ export class TaskService {
     private http: HttpClient
   ) {}
 
-  // ✅ JWT HEADERS
-  private getHeaders() {
+  // ======================================
+  // JWT HEADERS
+  // ======================================
+
+  private getAuthHeaders() {
 
     const token =
       localStorage.getItem('token');
@@ -33,7 +36,8 @@ export class TaskService {
 
       headers: new HttpHeaders({
 
-        Authorization: `Bearer ${token}`
+        Authorization:
+          `Bearer ${token}`
 
       })
 
@@ -41,7 +45,30 @@ export class TaskService {
 
   }
 
-  // ✅ SEARCH TASKS
+  // ======================================
+  // GET TASKS
+  // ======================================
+
+  getTasks(
+    projectId: number,
+    page: number,
+    size: number
+  ) {
+
+    return this.http.get(
+
+      `${this.apiUrl}/project/${projectId}?page=${page}&size=${size}`,
+
+      this.getAuthHeaders()
+
+    );
+
+  }
+
+  // ======================================
+  // SEARCH TASKS
+  // ======================================
+
   searchTasks(
     projectId: number,
     keyword: string,
@@ -56,7 +83,8 @@ export class TaskService {
 
       {
 
-        headers: this.getHeaders().headers,
+        headers:
+          this.getAuthHeaders().headers,
 
         params: {
 
@@ -73,37 +101,10 @@ export class TaskService {
 
   }
 
-  // ✅ GET TASKS
-  getTasks(
-    projectId: number,
-    page: number,
-    size: number
-  ) {
+  // ======================================
+  // CREATE TASK
+  // ======================================
 
-    return this.http.get(
-
-      `${this.apiUrl}/project/${projectId}?page=${page}&size=${size}`,
-
-      this.getHeaders()
-
-    );
-
-  }
-
-  // ✅ GET TASK BY ID
-  getTaskById(id: number) {
-
-    return this.http.get(
-
-      `${this.apiUrl}/${id}`,
-
-      this.getHeaders()
-
-    );
-
-  }
-
-  // ✅ CREATE TASK
   createTask(data: any) {
 
     return this.http.post(
@@ -112,13 +113,16 @@ export class TaskService {
 
       data,
 
-      this.getHeaders()
+      this.getAuthHeaders()
 
     );
 
   }
 
-  // ✅ UPDATE TASK
+  // ======================================
+  // UPDATE TASK
+  // ======================================
+
   updateTask(id: number, data: any) {
 
     return this.http.put(
@@ -127,41 +131,54 @@ export class TaskService {
 
       data,
 
-      this.getHeaders()
+      this.getAuthHeaders()
 
     );
 
   }
 
-  // ✅ DELETE TASK
+  // ======================================
+  // DELETE TASK
+  // ======================================
+
   deleteTask(id: number) {
 
     return this.http.delete(
 
       `${this.apiUrl}/${id}`,
 
-      {
-
-        headers: this.getHeaders().headers,
-
-        responseType: 'text'
-
-      }
+      this.getAuthHeaders()
 
     );
 
   }
+  // ======================================
+// GET TASK BY ID
+// ======================================
 
-  // ✅ GET STATUS ENUMS
+getTaskById(id: number) {
+
+  return this.http.get(
+
+    `${this.apiUrl}/${id}`,
+
+    this.getAuthHeaders()
+
+  );
+
+}
+
+  // ======================================
+  // GET STATUS ENUMS
+  // ======================================
+
   getStatuses() {
 
-    return this.http.get<string[]>((
+    return this.http.get<string[]>(
 
-      `${this.apiUrl}/statuses`
+      `${this.apiUrl}/statuses`,
 
-    ),
-
-    this.getHeaders()
+      this.getAuthHeaders()
 
     );
 
