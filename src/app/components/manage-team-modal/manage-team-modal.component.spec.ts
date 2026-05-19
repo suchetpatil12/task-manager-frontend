@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginComponent } from './login.component';
+import { ManageTeamModalComponent } from './manage-team-modal.component';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('ManageTeamModalComponent', () => {
+  let component: ManageTeamModalComponent;
+  let fixture: ComponentFixture<ManageTeamModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginComponent]
+      imports: [ManageTeamModalComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(ManageTeamModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

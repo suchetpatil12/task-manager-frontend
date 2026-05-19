@@ -39,7 +39,8 @@ import {
 } from '@angular/material/snack-bar';
 
 import { routes } from './app.routes';
-import { authInterceptor } from './shared/auth.interceptor';
+import { authInterceptor } from './interceptor/auth.interceptor';
+import { errorInterceptor } from './interceptor/error.interceptor';
 
 
 
@@ -67,7 +68,8 @@ ApplicationConfig = {
     provideHttpClient(
 
       withInterceptors([
-        authInterceptor
+        authInterceptor,
+         errorInterceptor
       ])
 
     ),

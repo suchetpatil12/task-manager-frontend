@@ -1,0 +1,142 @@
+<div class="details-modal">
+
+    <!-- HEADER -->
+
+    <div class="modal-header">
+
+        <div>
+
+            <h2>
+                {{ project.name }}
+            </h2>
+
+            <p>
+                Project Analytics Overview
+            </p>
+
+        </div>
+
+        <button
+            class="close-btn"
+            (click)="closeModal()">
+
+            ✕
+        </button>
+
+    </div>
+
+    <!-- PROGRESS -->
+
+    <div class="progress-section">
+
+        <div class="progress-top">
+
+            <span>
+                Project Completion
+            </span>
+
+            <span>
+                {{ completionPercentage }}%
+            </span>
+
+        </div>
+
+        <div class="progress-bar">
+
+            <div
+                class="progress-fill"
+                [style.width.%]="completionPercentage">
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- STATS GRID -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <h3>
+                {{ totalTasks }}
+            </h3>
+
+            <p>Total Tasks</p>
+
+        </div>
+
+        <div class="stat-card done">
+
+            <h3>
+                {{ completedTasks }}
+            </h3>
+
+            <p>Completed</p>
+
+        </div>
+
+        <div class="stat-card progress">
+
+            <h3>
+                {{ inProgressTasks }}
+            </h3>
+
+            <p>In Progress</p>
+
+        </div>
+
+        <div class="stat-card todo">
+
+            <h3>
+                {{ todoTasks }}
+            </h3>
+
+            <p>Pending</p>
+
+        </div>
+
+    </div>
+
+    <!-- PRIORITY -->
+
+    <div class="priority-section">
+
+        <h3>
+            Task Priorities
+        </h3>
+
+        <div class="priority-grid">
+
+            <div class="priority-card high">
+
+                HIGH
+                <span>
+                    {{ highPriority }}
+                </span>
+
+            </div>
+
+            <div class="priority-card medium">
+
+                MEDIUM
+                <span>
+                    {{ mediumPriority }}
+                </span>
+
+            </div>
+
+            <div class="priority-card low">
+
+                LOW
+                <span>
+                    {{ lowPriority }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

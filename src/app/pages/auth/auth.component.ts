@@ -1,12 +1,24 @@
-import { Component } from '@angular/core';
+import {
 
-import { CommonModule } from '@angular/common';
+  Component,
+  OnInit
 
-import { FormsModule } from '@angular/forms';
+} from '@angular/core';
 
-import { Router } from '@angular/router';
+import { CommonModule }
+from '@angular/common';
 
-import { AuthService } from '../../services/auth.service';
+import { FormsModule }
+from '@angular/forms';
+
+import { Router }
+from '@angular/router';
+
+import { AuthService }
+from '../../services/auth.service';
+
+import { UserService }
+from '../../services/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -14,8 +26,10 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
 
   imports: [
+
     CommonModule,
     FormsModule
+
   ],
 
   templateUrl: './auth.component.html',
@@ -23,13 +37,28 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./auth.component.css']
 })
 
-export class AuthComponent {
+export class AuthComponent
+implements OnInit {
+
+  // =========================================
+  // LOGIN MODE
+  // =========================================
 
   isLoginMode = true;
 
-  // =========================
+  // =========================================
+  // DESIGNATIONS
+  // =========================================
+
+  designations: string[] = [];
+
+  showNewDesignationInput = false;
+
+  newDesignation = '';
+
+  // =========================================
   // LOGIN DATA
-  // =========================
+  // =========================================
 
   loginData = {
 
@@ -39,9 +68,9 @@ export class AuthComponent {
 
   };
 
-  // =========================
+  // =========================================
   // REGISTER DATA
-  // =========================
+  // =========================================
 
   registerData = {
 
@@ -63,17 +92,77 @@ export class AuthComponent {
 
     private authService: AuthService,
 
+    private userService: UserService,
+
     private router: Router
 
   ) {}
 
-  // =========================
-  // LOGIN
-  // =========================
+  // =========================================
+  // INIT
+  // =========================================
 
-  login() {
+  ngOnInit(): void {
+
+    this.loadDesignations();
+
+  }
+
+  // =========================================
+  // LOAD DESIGNATIONS
+  // =========================================
+
+  loadDesignations(): void {
+
+    this.userService
+
+      .getDesignations()
+
+      .subscribe({
+
+        next: (res: any) => {
+
+          this.designations = res;
+
+        }
+
+      });
+
+  }
+
+  // =========================================
+  // DESIGNATION CHANGE
+  // =========================================
+
+  onDesignationChange(): void {
+
+    if (
+
+      this.registerData.designation ===
+      'NEW_DESIGNATION'
+
+    ) {
+
+      this.showNewDesignationInput = true;
+
+    }
+
+    else {
+
+      this.showNewDesignationInput = false;
+
+    }
+
+  }
+
+  // =========================================
+  // LOGIN
+  // =========================================
+
+  login(): void {
 
     this.authService
+
       .login(this.loginData)
 
       .subscribe({
@@ -83,21 +172,30 @@ export class AuthComponent {
           // SAVE TOKEN
 
           localStorage.setItem(
+
             'token',
+
             res.accessToken
+
           );
 
           // DECODE ROLE
 
           const payload = JSON.parse(
+
             atob(
-              res.accessToken.split('.')[1]
+              res.accessToken
+                .split('.')[1]
             )
+
           );
 
           localStorage.setItem(
+
             'role',
+
             payload.role
+
           );
 
           // NAVIGATE
@@ -106,25 +204,19 @@ export class AuthComponent {
             '/dashboard'
           ]);
 
-        },
-
-        error: () => {
-
-          alert('Invalid Credentials');
-
         }
 
       });
 
   }
 
-  // =========================
+  // =========================================
   // REGISTER
-  // =========================
+  // =========================================
 
-  register() {
+  register(): void {
 
-    // PASSWORD MATCH CHECK
+    // PASSWORD CHECK
 
     if (
 
@@ -133,23 +225,44 @@ export class AuthComponent {
 
     ) {
 
-      alert('Passwords do not match');
-
       return;
 
     }
 
     // DESIGNATION CHECK
 
-    if (!this.registerData.designation) {
+    if (
 
-      alert('Please select designation');
+      !this.registerData.designation
+
+    ) {
 
       return;
 
     }
 
+    // =====================================
+    // NEW DESIGNATION
+    // =====================================
+
+    if (
+
+      this.registerData.designation ===
+      'NEW_DESIGNATION'
+
+    ) {
+
+      this.registerData.designation =
+        this.newDesignation
+          .trim()
+          .toUpperCase()
+          .replace(/\s+/g, '_');
+
+    }
+
+    // =====================================
     // PAYLOAD
+    // =====================================
 
     const payload = {
 
@@ -161,13 +274,17 @@ export class AuthComponent {
 
       role: this.registerData.role,
 
-      designation: this.registerData.designation
+      designation:
+        this.registerData.designation
 
     };
 
+    // =====================================
     // API CALL
+    // =====================================
 
     this.authService
+
       .register(payload)
 
       .subscribe({
@@ -175,8 +292,6 @@ export class AuthComponent {
         next: (res: any) => {
 
           console.log(res);
-
-          alert('Registration Successful');
 
           // RESET FORM
 
@@ -196,17 +311,17 @@ export class AuthComponent {
 
           };
 
+          this.newDesignation = '';
+
+          this.showNewDesignationInput = false;
+
+          // RELOAD DESIGNATIONS
+
+          this.loadDesignations();
+
           // SWITCH TO LOGIN
 
           this.isLoginMode = true;
-
-        },
-
-        error: (err) => {
-
-          console.log(err);
-
-          alert('Registration Failed');
 
         }
 
@@ -214,11 +329,11 @@ export class AuthComponent {
 
   }
 
-  // =========================
+  // =========================================
   // TOGGLE LOGIN / REGISTER
-  // =========================
+  // =========================================
 
-  toggleMode() {
+  toggleMode(): void {
 
     this.isLoginMode =
       !this.isLoginMode;

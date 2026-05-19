@@ -1,3 +1,5 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 /* =========================================
    GLOBAL
 ========================================= */
@@ -20,15 +22,19 @@ body {
 
     background:
         #f8fafc;
+
+    scroll-behavior:
+        smooth;
 }
 
 /* =========================================
-   SMOOTH SCROLL
+   GLOBAL BOX MODEL
 ========================================= */
 
-html {
+* {
 
-    scroll-behavior: smooth;
+    box-sizing:
+        border-box;
 }
 
 /* =========================================
@@ -45,7 +51,7 @@ body.dark-theme {
 }
 
 /* =========================================
-   FULL PAGE DARK MODE
+   PAGE BACKGROUNDS
 ========================================= */
 
 body.dark-theme .dashboard-page,
@@ -69,7 +75,7 @@ body.dark-theme .edit-task-page {
 }
 
 /* =========================================
-   TEXT
+   TYPOGRAPHY
 ========================================= */
 
 body.dark-theme h1,
@@ -85,10 +91,6 @@ body.dark-theme label {
     color:
         #f8fafc !important;
 }
-
-/* =========================================
-   SUBTEXT
-========================================= */
 
 body.dark-theme .tasks-header p,
 body.dark-theme .dashboard-header p,
@@ -157,7 +159,7 @@ body.dark-theme .project-card {
 }
 
 /* =========================================
-   TABLE
+   TABLES
 ========================================= */
 
 body.dark-theme table {
@@ -192,11 +194,10 @@ body.dark-theme select {
 
     border:
         1px solid rgba(255,255,255,0.08) !important;
-}
 
-/* =========================================
-   INPUT PLACEHOLDER
-========================================= */
+    transition:
+        all 0.25s ease;
+}
 
 body.dark-theme input::placeholder,
 body.dark-theme textarea::placeholder {
@@ -229,10 +230,6 @@ body.dark-theme .mat-mdc-select-arrow {
         white !important;
 }
 
-/* =========================================
-   MATERIAL DROPDOWN
-========================================= */
-
 body.dark-theme .mat-mdc-select-panel {
 
     background:
@@ -252,28 +249,6 @@ body.dark-theme .mat-mdc-option:hover {
 
     background:
         rgba(255,255,255,0.06) !important;
-}
-
-/* =========================================
-   SNACKBAR
-========================================= */
-
-body.dark-theme .success-snackbar {
-
-    background:
-        #10b981 !important;
-
-    color:
-        white !important;
-}
-
-body.dark-theme .error-snackbar {
-
-    background:
-        #ef4444 !important;
-
-    color:
-        white !important;
 }
 
 /* =========================================
@@ -312,10 +287,11 @@ body.dark-theme .error-snackbar {
 }
 
 /* =========================================
-   REMOVE MATERIAL DIALOG DEFAULT STYLES
+   CUSTOM DIALOG
 ========================================= */
 
-.custom-dialog-container .mat-mdc-dialog-container {
+.custom-dialog-container .mat-mdc-dialog-container,
+.custom-dialog-container .mdc-dialog__surface {
 
     padding:
         0 !important;
@@ -332,25 +308,6 @@ body.dark-theme .error-snackbar {
     box-shadow:
         none !important;
 }
-
-.custom-dialog-container .mdc-dialog__surface {
-
-    background:
-        transparent !important;
-
-    overflow:
-        hidden !important;
-
-    border-radius:
-        28px !important;
-
-    box-shadow:
-        none !important;
-}
-
-/* =========================================
-   REMOVE DIALOG CONTENT SCROLL BUG
-========================================= */
 
 .mat-mdc-dialog-content {
 
@@ -393,17 +350,7 @@ body.dark-theme .error-snackbar {
 }
 
 /* =========================================
-   ANIMATIONS
-========================================= */
-
-* {
-
-    box-sizing:
-        border-box;
-}
-
-/* =========================================
-   BUTTON SMOOTHNESS
+   BUTTONS
 ========================================= */
 
 button {
@@ -413,13 +360,154 @@ button {
 }
 
 /* =========================================
-   INPUT SMOOTHNESS
+   REMOVE MATERIAL DEFAULT SNACKBAR
 ========================================= */
 
-input,
-textarea,
-select {
+.mat-mdc-snack-bar-container {
 
-    transition:
-        all 0.25s ease;
+    background:
+        transparent !important;
+
+    box-shadow:
+        none !important;
+
+    border:
+        none !important;
+
+    padding:
+        0 !important;
+}
+
+.mat-mdc-snackbar-surface {
+
+    background:
+        transparent !important;
+
+    box-shadow:
+        none !important;
+
+    border:
+        none !important;
+}
+
+/* =========================================
+   SUCCESS SNACKBAR
+========================================= */
+
+.success-snackbar {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16,185,129,0.95),
+            rgba(5,150,105,0.95)
+        ) !important;
+
+    color:
+        white !important;
+
+    border-radius:
+        18px !important;
+
+    padding:
+        14px 18px !important;
+
+    font-weight:
+        600;
+
+    box-shadow:
+        0 12px 35px rgba(16,185,129,0.35);
+
+    animation:
+        snackbarSlide 0.35s ease;
+}
+
+/* =========================================
+   ERROR SNACKBAR
+========================================= */
+
+.error-snackbar {
+
+    background:
+        rgba(15,23,42,0.94) !important;
+
+    color:
+        white !important;
+
+    border:
+        1px solid rgba(239,68,68,0.35);
+
+    border-left:
+        5px solid #ef4444;
+
+    border-radius:
+        18px !important;
+
+    padding:
+        14px 18px !important;
+
+    font-weight:
+        600;
+
+    box-shadow:
+        0 10px 28px rgba(239,68,68,0.22);
+
+    backdrop-filter:
+        blur(14px);
+
+    animation:
+        snackbarSlide 0.35s ease;
+}
+
+/* =========================================
+   SNACKBAR BUTTON
+========================================= */
+
+.mat-mdc-snack-bar-action {
+
+    color:
+        white !important;
+
+    font-weight:
+        700 !important;
+}
+
+/* =========================================
+   SNACKBAR TEXT
+========================================= */
+
+.mat-mdc-snack-bar-label {
+
+    font-size:
+        14px;
+
+    letter-spacing:
+        0.2px;
+}
+
+/* =========================================
+   SNACKBAR ANIMATION
+========================================= */
+
+@keyframes snackbarSlide {
+
+    from {
+
+        opacity:
+            0;
+
+        transform:
+            translateY(-18px)
+            scale(0.96);
+    }
+
+    to {
+
+        opacity:
+            1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
 }

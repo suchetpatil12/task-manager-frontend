@@ -1,0 +1,78 @@
+.delete-dialog {
+
+    padding: 20px;
+
+    text-align: center;
+
+    width: 100%;
+}
+
+.icon {
+
+    font-size: 58px;
+
+    margin-bottom: 18px;
+}
+
+h2 {
+
+    font-size: 30px;
+
+    margin-bottom: 12px;
+
+    color: #111827;
+}
+
+p {
+
+    color: #64748b;
+
+    margin-bottom: 28px;
+
+    font-size: 16px;
+}
+
+.actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 14px;
+}
+
+.cancel-btn {
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #e5e7eb;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.delete-btn {
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #dc2626,
+        #ef4444
+    );
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}

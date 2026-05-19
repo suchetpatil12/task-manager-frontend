@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
 
-import { MatDialogRef } from '@angular/material/dialog';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef
+} from '@angular/material/dialog';
 
-import { ProjectService } from '../../services/project.service';
+import { ProjectService }
+from '../../services/project.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-create-project-modal',
@@ -18,12 +24,19 @@ import { ProjectService } from '../../services/project.service';
     FormsModule
   ],
 
-  templateUrl: './create-project-modal.component.html',
+  templateUrl:
+    './create-project-modal.component.html',
 
-  styleUrls: ['./create-project-modal.component.css']
+  styleUrls: [
+    './create-project-modal.component.css'
+  ]
 })
 
 export class CreateProjectModalComponent {
+
+  // =====================================
+  // PROJECT MODEL
+  // =====================================
 
   project = {
 
@@ -35,36 +48,159 @@ export class CreateProjectModalComponent {
 
   constructor(
 
-    private dialogRef: MatDialogRef<CreateProjectModalComponent>,
+    private dialogRef:
+      MatDialogRef<CreateProjectModalComponent>,
 
-    private projectService: ProjectService
+      private snackBar: MatSnackBar,
+    private projectService:
+      ProjectService,
 
-  ) {}
+    @Inject(MAT_DIALOG_DATA)
+    public data: any
 
-  createProject(): void {
+  ) {
 
-    this.projectService
-      .createProject(this.project)
+    // =====================================
+    // EDIT MODE
+    // =====================================
 
-      .subscribe({
+    if (data?.project) {
 
-        next: () => {
+      this.project = {
 
-          alert('Project Created');
+        name: data.project.name,
 
-          this.dialogRef.close(true);
+        description:
+          data.project.description
 
-        },
+      };
 
-        error: () => {
-
-          alert('Failed to create project');
-
-        }
-
-      });
+    }
 
   }
+
+  // =====================================
+  // CHECK EDIT MODE
+  // =====================================
+
+  isEditMode(): boolean {
+
+    return !!this.data?.project;
+
+  }
+
+  // =====================================
+  // CREATE / UPDATE PROJECT
+  // =====================================
+
+  submitProject(): void {
+
+    // =====================================
+    // UPDATE PROJECT
+    // =====================================
+
+    if (this.isEditMode()) {
+
+      this.projectService
+
+        .updateProject(
+          this.data.project.id,
+          this.project
+        )
+
+        .subscribe({
+
+          next: () => {
+
+            this.snackBar.open(
+
+  'Project Updated Successfully',
+
+  '✕',
+
+  {
+
+    duration: 3000,
+
+    horizontalPosition: 'right',
+
+    verticalPosition: 'top',
+
+    panelClass: ['success-snackbar']
+
+  }
+
+);
+
+            this.dialogRef.close(true);
+
+          },
+
+          error: () => {
+
+            alert('Update Failed');
+
+          }
+
+        });
+
+    }
+
+    // =====================================
+    // CREATE PROJECT
+    // =====================================
+
+    else {
+
+      this.projectService
+
+        .createProject(this.project)
+
+        .subscribe({
+
+          next: () => {
+
+            this.snackBar.open(
+
+  'Operation Failed',
+
+  '✕',
+
+  {
+
+    duration: 3000,
+
+    horizontalPosition: 'right',
+
+    verticalPosition: 'top',
+
+    panelClass: ['error-snackbar']
+
+  }
+
+);
+
+            this.dialogRef.close(true);
+
+          },
+
+          error: () => {
+
+            alert(
+              'Failed to create project'
+            );
+
+          }
+
+        });
+
+    }
+
+  }
+
+  // =====================================
+  // CLOSE MODAL
+  // =====================================
 
   closeModal(): void {
 

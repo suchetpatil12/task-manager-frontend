@@ -52,6 +52,8 @@ export class AuthService {
 
     role: string;
 
+    designation: string;
+
   }) {
 
     return this.http.post(
@@ -114,15 +116,13 @@ export class AuthService {
   // =========================
   // CHECK ADMIN
   // =========================
+isAdmin(): boolean {
 
-  isAdmin(): boolean {
+  const role = localStorage.getItem('role');
 
-    const role =
-      localStorage.getItem('role');
+  return role === 'ADMIN';
 
-    return role === 'ADMIN';
-
-  }
+}
 
   // =========================
   // CHECK LOGIN

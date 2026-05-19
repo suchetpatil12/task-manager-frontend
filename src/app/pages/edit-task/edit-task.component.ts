@@ -170,27 +170,36 @@ implements OnInit {
 
   loadProjects(): void {
 
-    this.projectService
+  this.projectService
 
-      .getProjects()
+    .getProjects(
 
-      .subscribe({
+      0,
 
-        next: (res: any) => {
+      100,
 
-          this.projects = res;
+      ''
 
-        },
+    )
 
-        error: (err) => {
+    .subscribe({
 
-          console.log(err);
+      next: (res: any) => {
 
-        }
+        this.projects =
+          res.content;
 
-      });
+      },
 
-  }
+      error: (err) => {
+
+        console.log(err);
+
+      }
+
+    });
+
+}
 
   // =========================================
   // LOAD STATUS

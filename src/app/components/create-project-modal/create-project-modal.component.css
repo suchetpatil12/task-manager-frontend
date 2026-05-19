@@ -1,4 +1,6 @@
-/* MODAL ENTRY ANIMATION */
+/* =========================================
+   MODAL ENTRY ANIMATION
+========================================= */
 
 @keyframes modalFadeIn {
 
@@ -21,7 +23,9 @@
     }
 }
 
-/* OVERLAY */
+/* =========================================
+   OVERLAY
+========================================= */
 
 .modal-overlay {
 
@@ -30,10 +34,13 @@
     inset: 0;
 
     background:
-        rgba(0,0,0,0.58);
+        linear-gradient(
+            rgba(2,6,23,0.70),
+            rgba(15,23,42,0.78)
+        );
 
     backdrop-filter:
-        blur(6px);
+        blur(4px);
 
     display: flex;
 
@@ -47,13 +54,22 @@
         overlayFade 0.25s ease;
 }
 
-/* CARD */
+.projects-page.modal-open {
+
+    transform: scale(0.98);
+
+    transition: 0.25s ease;
+}
+
+/* =========================================
+   CARD
+========================================= */
 
 .modal-card {
 
     width: 100%;
 
-    max-width: 540px;
+    max-width: 560px;
 
     background:
         #0f172a;
@@ -61,7 +77,7 @@
     border:
         1px solid rgba(255,255,255,0.08);
 
-    border-radius: 26px;
+    border-radius: 28px;
 
     padding: 34px;
 
@@ -74,28 +90,9 @@
     transform-origin: center;
 }
 
-/* ANIMATION */
-
-@keyframes popup {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(20px)
-            scale(0.96);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
+/* =========================================
+   ANIMATION
+========================================= */
 
 @keyframes overlayFade {
 
@@ -110,7 +107,9 @@
     }
 }
 
-/* HEADER */
+/* =========================================
+   HEADER
+========================================= */
 
 .modal-header {
 
@@ -120,56 +119,68 @@
 
     align-items: flex-start;
 
-    margin-bottom: 28px;
+    margin-bottom: 30px;
 }
 
 .modal-header h2 {
 
     color: white;
 
-    font-size: 32px;
+    font-size: 34px;
 
     font-weight: 700;
 
-    margin-bottom: 8px;
+    margin: 0 0 10px 0;
 }
 
 .modal-header p {
 
     color: #94a3b8;
 
-    font-size: 14px;
+    font-size: 15px;
+
+    margin: 0;
 }
 
-/* CLOSE */
+/* =========================================
+   CLOSE BUTTON
+========================================= */
 
 .close-btn {
 
-    width: 40px;
+    width: 42px;
 
-    height: 40px;
+    height: 42px;
 
     border: none;
 
-    border-radius: 12px;
+    border-radius: 14px;
 
     background:
-        rgba(255,255,255,0.05);
+        rgba(255,255,255,0.06);
 
     color: white;
 
+    font-size: 16px;
+
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        all 0.25s ease;
 }
 
 .close-btn:hover {
 
     background:
-        rgba(255,255,255,0.12);
+        rgba(255,255,255,0.14);
+
+    transform:
+        rotate(90deg);
 }
 
-/* FORM */
+/* =========================================
+   FORM
+========================================= */
 
 .project-form {
 
@@ -177,12 +188,12 @@
 
     flex-direction: column;
 
-    gap: 26px;
-
-    margin-top: 10px;
+    gap: 28px;
 }
 
-/* FORM GROUP */
+/* =========================================
+   FORM GROUP
+========================================= */
 
 .form-group {
 
@@ -195,7 +206,9 @@
     width: 100%;
 }
 
-/* LABEL */
+/* =========================================
+   LABEL
+========================================= */
 
 .form-group label {
 
@@ -208,7 +221,9 @@
     padding-left: 2px;
 }
 
-/* INPUT + TEXTAREA */
+/* =========================================
+   INPUT + TEXTAREA
+========================================= */
 
 .project-form input,
 .project-form textarea {
@@ -217,9 +232,9 @@
 
     box-sizing: border-box;
 
-    padding: 16px 18px;
+    padding: 18px 20px;
 
-    border-radius: 16px;
+    border-radius: 18px;
 
     border:
         1px solid rgba(255,255,255,0.08);
@@ -237,18 +252,22 @@
         all 0.25s ease;
 }
 
-/* TEXTAREA */
+/* =========================================
+   TEXTAREA
+========================================= */
 
 .project-form textarea {
 
-    min-height: 150px;
+    min-height: 160px;
 
     resize: none;
 
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
-/* FOCUS */
+/* =========================================
+   FOCUS
+========================================= */
 
 .project-form input:focus,
 .project-form textarea:focus {
@@ -260,13 +279,19 @@
         0 0 0 4px rgba(139,92,246,0.14);
 }
 
-/* PLACEHOLDER */
+/* =========================================
+   PLACEHOLDER
+========================================= */
 
 .project-form input::placeholder,
 .project-form textarea::placeholder {
 
     color: #94a3b8;
-}/* ACTIONS */
+}
+
+/* =========================================
+   ACTIONS
+========================================= */
 
 .modal-actions {
 
@@ -276,20 +301,22 @@
 
     gap: 14px;
 
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
-/* CANCEL */
+/* =========================================
+   CANCEL BUTTON
+========================================= */
 
 .cancel-btn {
 
-    height: 50px;
+    height: 52px;
 
-    padding: 0 22px;
+    padding: 0 24px;
 
     border: none;
 
-    border-radius: 14px;
+    border-radius: 16px;
 
     background:
         rgba(255,255,255,0.08);
@@ -299,19 +326,32 @@
     font-weight: 600;
 
     cursor: pointer;
+
+    transition:
+        all 0.25s ease;
 }
 
-/* CREATE */
+.cancel-btn:hover {
+
+    background:
+        rgba(255,255,255,0.14);
+}
+
+/* =========================================
+   CREATE / UPDATE BUTTON
+========================================= */
 
 .create-btn {
 
-    height: 50px;
+    height: 52px;
 
-    padding: 0 28px;
+    min-width: 180px;
+
+    padding: 0 30px;
 
     border: none;
 
-    border-radius: 14px;
+    border-radius: 16px;
 
     background:
         linear-gradient(
@@ -322,6 +362,8 @@
 
     color: white;
 
+    font-size: 15px;
+
     font-weight: 700;
 
     cursor: pointer;
@@ -329,7 +371,8 @@
     box-shadow:
         0 12px 30px rgba(147,51,234,0.35);
 
-    transition: 0.25s;
+    transition:
+        all 0.25s ease;
 }
 
 .create-btn:hover {
@@ -339,4 +382,34 @@
 
     box-shadow:
         0 16px 40px rgba(147,51,234,0.45);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 640px) {
+
+    .modal-card {
+
+        margin: 18px;
+
+        padding: 26px;
+    }
+
+    .modal-header h2 {
+
+        font-size: 28px;
+    }
+
+    .modal-actions {
+
+        flex-direction: column;
+    }
+
+    .cancel-btn,
+    .create-btn {
+
+        width: 100%;
+    }
 }

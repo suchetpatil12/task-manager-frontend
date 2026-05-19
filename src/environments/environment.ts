@@ -1,6 +1,7 @@
 export const environment = {
+
   production: false,
 
-  apiUrl:
-    'https://task-manager-backend-imnx.onrender.com'
+  apiUrl: 'http://localhost:8080'
+
 };

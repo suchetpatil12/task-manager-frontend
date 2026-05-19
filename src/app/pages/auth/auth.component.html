@@ -159,53 +159,79 @@
                     </select>
 
                     <!-- DESIGNATION -->
-                    <select
-                        [(ngModel)]="registerData.designation"
-                        name="designation"
-                        required
-                    >
+                    <!-- DESIGNATION -->
 
-                        <option value="">
-                            Select Designation
-                        </option>
+<div class="form-group">
 
-                        <option value="INTERN">
-                            Intern
-                        </option>
+    <label>
+        Designation
+    </label>
 
-                        <option value="SOFTWARE_DEVELOPER">
-                            Software Developer
-                        </option>
+    <select
 
-                        <option value="SENIOR_SOFTWARE_DEVELOPER">
-                            Senior Software Developer
-                        </option>
+        [(ngModel)]="registerData.designation"
 
-                        <option value="PROJECT_MANAGER">
-                            Project Manager
-                        </option>
+        name="designation"
 
-                        <option value="QA_ENGINEER">
-                            QA Engineer
-                        </option>
+        (change)="onDesignationChange()"
 
-                        <option value="DEVOPS_ENGINEER">
-                            DevOps Engineer
-                        </option>
+        required
 
-                        <option value="UI_UX_DESIGNER">
-                            UI/UX Designer
-                        </option>
+    >
 
-                        <option value="BUSINESS_ANALYST">
-                            Business Analyst
-                        </option>
+        <option value="">
 
-                        <option value="TEAM_LEAD">
-                            Team Lead
-                        </option>
+            Select Designation
 
-                    </select>
+        </option>
+
+        <option
+            *ngFor="let designation of designations"
+            [value]="designation">
+
+            {{ designation }}
+
+        </option>
+
+        <!-- ADD NEW -->
+
+        <option value="NEW_DESIGNATION">
+
+            + Add New Designation
+
+        </option>
+
+    </select>
+
+</div>
+
+<!-- NEW DESIGNATION INPUT -->
+
+<div
+
+    class="form-group"
+
+    *ngIf="showNewDesignationInput"
+
+>
+
+    <label>
+        New Designation
+    </label>
+
+    <input
+
+        type="text"
+
+        placeholder="Enter New Designation"
+
+        [(ngModel)]="newDesignation"
+
+        name="newDesignation"
+
+    />
+
+</div>
 
                     <!-- SUBMIT BUTTON -->
                     <button

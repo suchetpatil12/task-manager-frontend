@@ -13,9 +13,14 @@ import {
   MatDialogRef
 } from '@angular/material/dialog';
 
-import { TaskService } from '../../services/task.service';
+import { TaskService }
+from '../../services/task.service';
 
-import { UserService } from '../../services/user.service';
+import { UserService }
+from '../../services/user.service';
+
+import { ProjectService }
+from '../../services/project.service';
 
 @Component({
   selector: 'app-create-task-dialog',
@@ -27,9 +32,12 @@ import { UserService } from '../../services/user.service';
     FormsModule
   ],
 
-  templateUrl: './create-task-dialog.component.html',
+  templateUrl:
+    './create-task-dialog.component.html',
 
-  styleUrls: ['./create-task-dialog.component.css']
+  styleUrls: [
+    './create-task-dialog.component.css'
+  ]
 })
 
 export class CreateTaskDialogComponent
@@ -46,9 +54,13 @@ implements OnInit {
   // =========================================
 
   priorities: string[] = [
+
     'LOW',
+
     'MEDIUM',
+
     'HIGH'
+
   ];
 
   // =========================================
@@ -97,7 +109,9 @@ implements OnInit {
 
     private taskService: TaskService,
 
-    private userService: UserService
+    private userService: UserService,
+
+    private projectService: ProjectService
 
   ) {}
 
@@ -173,12 +187,16 @@ implements OnInit {
   }
 
   // =========================================
-  // FILTER USERS
+  // FILTER USERS BY PROJECT MEMBERS
   // =========================================
 
   filterUsersByDesignation(): void {
 
+    // RESET USER
+
     this.task.assignedUserId = null;
+
+    // EMPTY DESIGNATION
 
     if (!this.selectedDesignation) {
 
@@ -188,17 +206,31 @@ implements OnInit {
 
     }
 
-    this.userService
+    // =====================================
+    // ONLY PROJECT MEMBERS
+    // =====================================
 
-      .getUsersByDesignation(
+    this.projectService
+
+      .getMembersByDesignation(
+
+        this.task.projectId,
+
         this.selectedDesignation
+
       )
 
       .subscribe({
 
         next: (res: any) => {
 
-          console.log('FILTERED USERS:', res);
+          console.log(
+
+            'PROJECT FILTERED USERS:',
+
+            res
+
+          );
 
           this.filteredUsers = res;
 
@@ -240,7 +272,13 @@ implements OnInit {
 
     };
 
-    console.log('CREATE PAYLOAD:', payload);
+    console.log(
+
+      'CREATE PAYLOAD:',
+
+      payload
+
+    );
 
     this.taskService
 
@@ -250,7 +288,9 @@ implements OnInit {
 
         next: () => {
 
-          alert('Task Created Successfully');
+          alert(
+            'Task Created Successfully'
+          );
 
           this.dialogRef.close(true);
 
@@ -260,7 +300,9 @@ implements OnInit {
 
           console.log(err);
 
-          alert('Failed to create task');
+          alert(
+            'Failed to create task'
+          );
 
         }
 

@@ -1,0 +1,102 @@
+<div class="team-modal">
+
+    <!-- HEADER -->
+
+    <div class="modal-header">
+
+        <div>
+
+            <h2>
+                Manage Team
+            </h2>
+
+            <p>
+                {{ project.name }}
+            </p>
+
+        </div>
+
+        <button
+            class="close-btn"
+            (click)="closeModal()">
+
+            ✕
+
+        </button>
+
+    </div>
+
+    <!-- ADD MEMBER -->
+
+    <div class="add-member-section">
+
+        <select
+            [(ngModel)]="selectedUserId">
+
+            <option
+                [ngValue]="null">
+
+                Select User
+
+            </option>
+
+            <option
+                *ngFor="let user of users"
+                [ngValue]="user.id">
+
+                {{ user.name }}
+                ({{ user.designation }})
+
+            </option>
+
+        </select>
+
+        <button
+            class="add-btn"
+            (click)="addMember()">
+
+            + Add Member
+
+        </button>
+
+    </div>
+
+    <!-- MEMBERS -->
+
+    <div class="members-grid">
+
+        <div
+            class="member-card"
+            *ngFor="let member of members">
+
+            <div class="avatar">
+
+                {{ member.name.charAt(0) }}
+
+            </div>
+
+            <div class="member-info">
+
+                <h3>
+                    {{ member.name }}
+                </h3>
+
+                <p>
+                    {{ member.designation }}
+                </p>
+
+            </div>
+
+            <button
+                class="remove-btn"
+                (click)="removeMember(member.id)">
+
+                Remove
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
