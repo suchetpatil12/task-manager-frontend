@@ -1,117 +1,326 @@
 <div class="dashboard-page">
 
-    <!-- HEADER -->
+  <!-- HERO SECTION -->
 
-    <div class="dashboard-header">
+  <div class="hero-section">
 
-        <h1>
-            Dashboard
-        </h1>
+    <div>
 
-        <p>
-            Welcome to Task Manager Analytics
-        </p>
+      <h1>
+        Welcome Back, Suchet 👋
+      </h1>
+
+      <p>
+        Manage projects, tasks and team productivity efficiently.
+      </p>
 
     </div>
 
-    <!-- ANALYTICS CARDS -->
+    <button class="hero-btn">
 
-    <div class="dashboard-grid">
+      + Create Project
 
-        <!-- PROJECTS -->
+    </button>
 
-        <mat-card class="dashboard-card projects-card">
+  </div>
 
-            <h2>
-                Total Projects
-            </h2>
+  <!-- STATS CARDS -->
 
-            <h1>
-                {{ dashboardData.totalProjects }}
-            </h1>
+  <div class="stats-grid">
 
-        </mat-card>
+    <!-- TOTAL PROJECTS -->
 
-        <!-- TASKS -->
+    <mat-card class="stat-card">
 
-        <mat-card class="dashboard-card tasks-card">
+      <div class="stat-icon project-icon">
 
-            <h2>
-                Total Tasks
-            </h2>
+        📁
 
-            <h1>
-                {{ dashboardData.totalTasks }}
-            </h1>
+      </div>
 
-        </mat-card>
+      <div>
+
+        <h2>
+          {{ dashboardData.totalProjects }}
+        </h2>
+
+        <p>Total Projects</p>
+
+      </div>
+
+    </mat-card>
+
+    <!-- TOTAL TASKS -->
+
+    <mat-card class="stat-card">
+
+      <div class="stat-icon task-icon">
+
+        📝
+
+      </div>
+
+      <div>
+
+        <h2>
+          {{ dashboardData.totalTasks }}
+        </h2>
+
+        <p>Total Tasks</p>
+
+      </div>
+
+    </mat-card>
+
+    <!-- COMPLETED -->
+
+    <mat-card class="stat-card">
+
+      <div class="stat-icon completed-icon">
+
+        ✅
+
+      </div>
+
+      <div>
+
+        <h2>
+          {{ dashboardData.completedTasks }}
+        </h2>
+
+        <p>Completed</p>
+
+      </div>
+
+    </mat-card>
+
+    <!-- PENDING -->
+
+    <mat-card class="stat-card">
+
+      <div class="stat-icon pending-icon">
+
+        ⏳
+
+      </div>
+
+      <div>
+
+        <h2>
+          {{ dashboardData.pendingTasks }}
+        </h2>
+
+        <p>Pending</p>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+  <!-- CHART SECTION -->
+
+  <div class="chart-grid">
+
+    <!-- PIE CHART -->
+
+    <mat-card class="chart-card">
+
+      <div class="chart-header">
+
+        <h3>
+          Task Status Overview
+        </h3>
+
+      </div>
+
+      <div class="chart-container">
+
+        <canvas
+
+          baseChart
+
+          [data]="pieChartData"
+
+          [type]="pieChartType"
+
+          [options]="pieChartOptions">
+
+        </canvas>
+
+      </div>
+
+    </mat-card>
+
+    <!-- PRODUCTIVITY -->
+
+    <mat-card class="chart-card">
+
+      <div class="chart-header">
+
+        <h3>
+          Productivity Summary
+        </h3>
+
+      </div>
+
+      <div class="summary-container">
 
         <!-- COMPLETED -->
 
-        <mat-card class="dashboard-card completed-card">
+        <div class="progress-item">
 
-            <h2>
-                Completed Tasks
-            </h2>
+          <div class="progress-top">
 
-            <h1>
-                {{ dashboardData.completedTasks }}
-            </h1>
+            <span>Completed</span>
 
-        </mat-card>
+            <span>
+              {{ dashboardData.completedTasks }}
+            </span>
 
-        <!-- PENDING -->
+          </div>
 
-        <mat-card class="dashboard-card pending-card">
+          <div class="progress-bar">
 
-            <h2>
-                Pending Tasks
-            </h2>
-
-            <h1>
-                {{ dashboardData.pendingTasks }}
-            </h1>
-
-        </mat-card>
-
-        <!-- PROGRESS -->
-
-        <mat-card class="dashboard-card progress-card">
-
-            <h2>
-                In Progress
-            </h2>
-
-            <h1>
-                {{ dashboardData.inProgressTasks }}
-            </h1>
-
-        </mat-card>
-
-    </div>
-
-    <!-- CHART SECTION -->
-
-    <div class="chart-section">
-
-        <mat-card class="chart-card">
-
-            <h2>
-                Task Status Analytics
-            </h2>
-
-            <div class="chart-container">
-
-                <canvas
-      baseChart
-      [data]="pieChartData"
-      [type]="pieChartType">
-    </canvas>
+            <div
+              class="progress-fill completed-fill"
+              [style.width.%]="
+                (dashboardData.completedTasks /
+                dashboardData.totalTasks) * 100
+              ">
 
             </div>
 
-        </mat-card>
+          </div>
+
+        </div>
+
+        <!-- PENDING -->
+
+        <div class="progress-item">
+
+          <div class="progress-top">
+
+            <span>Pending</span>
+
+            <span>
+              {{ dashboardData.pendingTasks }}
+            </span>
+
+          </div>
+
+          <div class="progress-bar">
+
+            <div
+              class="progress-fill pending-fill"
+              [style.width.%]="
+                (dashboardData.pendingTasks /
+                dashboardData.totalTasks) * 100
+              ">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- IN PROGRESS -->
+
+        <div class="progress-item">
+
+          <div class="progress-top">
+
+            <span>In Progress</span>
+
+            <span>
+              {{ dashboardData.inProgressTasks }}
+            </span>
+
+          </div>
+
+          <div class="progress-bar">
+
+            <div
+              class="progress-fill progress-fill-blue"
+              [style.width.%]="
+                (dashboardData.inProgressTasks /
+                dashboardData.totalTasks) * 100
+              ">
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </mat-card>
+
+  </div>
+
+  <!-- RECENT ACTIVITY -->
+
+  <mat-card class="activity-card">
+
+    <div class="activity-header">
+
+      <h3>
+        Recent Activity
+      </h3>
+
+      <span>
+        Live Updates
+      </span>
 
     </div>
+
+    <div
+      class="activity-item"
+      *ngFor="let activity of recentActivities">
+
+      <!-- ICON -->
+
+      <div class="activity-icon">
+
+        {{ activity.icon }}
+
+      </div>
+
+      <!-- CONTENT -->
+
+      <div class="activity-content">
+
+        <h4>
+
+          {{ activity.action }}
+
+        </h4>
+
+        <p>
+
+          {{ activity.targetName }}
+
+        </p>
+
+        <span class="activity-user">
+
+          by {{ activity.username }}
+
+        </span>
+
+      </div>
+
+      <!-- TIME -->
+
+      <div class="activity-time">
+
+        {{ activity.time }}
+
+      </div>
+
+    </div>
+
+  </mat-card>
 
 </div>

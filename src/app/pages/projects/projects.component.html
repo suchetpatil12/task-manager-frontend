@@ -168,6 +168,46 @@
 
             </div>
 
+            <!-- PROJECT PROGRESS -->
+
+<div class="project-progress">
+
+    <div class="progress-top">
+
+        <span>
+            Progress
+        </span>
+
+        <span>
+            {{ project.progressPercentage | number:'1.0-0' }}%
+        </span>
+
+    </div>
+
+    <div class="progress-bar">
+
+        <div
+            class="progress-fill"
+            [style.width.%]="project.progressPercentage">
+
+        </div>
+
+    </div>
+
+    <p class="task-count">
+
+        {{ project.completedTasks }}
+
+        /
+
+        {{ project.totalTasks }}
+
+        Tasks Completed
+
+    </p>
+
+</div>
+
             <!-- FOOTER -->
 
             <div

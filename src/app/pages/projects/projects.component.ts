@@ -98,7 +98,7 @@ implements OnInit {
 
   currentPage = 0;
 
-  pageSize = 5;
+  pageSize = 8;
 
   totalPages = 0;
 

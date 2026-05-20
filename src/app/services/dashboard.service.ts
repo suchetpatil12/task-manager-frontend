@@ -25,4 +25,18 @@ export class DashboardService {
 
   }
 
+  // =========================================
+// GET RECENT ACTIVITIES
+// =========================================
+
+getRecentActivities() {
+
+  return this.http.get(
+
+    `${this.api}/activities`
+
+  );
+
+}
+
 }

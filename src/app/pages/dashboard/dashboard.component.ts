@@ -18,7 +18,8 @@ import {
   Legend
 } from 'chart.js';
 
-// ✅ REGISTER CHART
+// ✅ REGISTER CHART COMPONENTS
+
 Chart.register(
   PieController,
   ArcElement,
@@ -28,63 +29,173 @@ Chart.register(
 
 @Component({
   selector: 'app-dashboard',
+
   standalone: true,
+
   imports: [
     CommonModule,
     MatCardModule,
     BaseChartDirective
   ],
+
   templateUrl: './dashboard.component.html',
+
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
 
-  dashboardData: any = {};
+export class DashboardComponent
+implements OnInit {
 
-  // ✅ PIE CHART LABELS
+  // =========================================
+  // DASHBOARD DATA
+  // =========================================
+
+  dashboardData: any = {
+
+    totalProjects: 0,
+
+    totalTasks: 0,
+
+    completedTasks: 0,
+
+    pendingTasks: 0,
+
+    inProgressTasks: 0
+
+  };
+
+  // =========================================
+  // RECENT ACTIVITIES
+  // =========================================
+
+  recentActivities: any[] = [];
+
+  // =========================================
+  // PIE CHART LABELS
+  // =========================================
+
   pieChartLabels = [
+
     'Completed',
+
     'Pending',
+
     'In Progress'
+
   ];
 
-  // ✅ PIE CHART DATA
-  pieChartData = {
-    labels: this.pieChartLabels,
-    datasets: [
-  {
-    data: [0, 0, 0],
-
-    backgroundColor: [
-
-      '#10b981', // completed
-
-      '#f59e0b', // pending
-
-      '#3b82f6'  // progress
-
-    ],
-
-    borderWidth: 0
-  }
-]
-  };
+  // =========================================
+  // PIE CHART TYPE
+  // =========================================
 
   pieChartType: any = 'pie';
 
+  // =========================================
+  // PIE CHART DATA
+  // =========================================
+
+  pieChartData = {
+
+    labels: this.pieChartLabels,
+
+    datasets: [
+
+      {
+
+        data: [0, 0, 0],
+
+        backgroundColor: [
+
+          '#10b981',
+
+          '#f59e0b',
+
+          '#3b82f6'
+
+        ],
+
+        hoverBackgroundColor: [
+
+          '#059669',
+
+          '#d97706',
+
+          '#2563eb'
+
+        ],
+
+        borderWidth: 0
+
+      }
+
+    ]
+
+  };
+
+  // =========================================
+  // PIE CHART OPTIONS
+  // =========================================
+
+  pieChartOptions = {
+
+    responsive: true,
+
+    maintainAspectRatio: false,
+
+    plugins: {
+
+      legend: {
+
+        position: 'bottom',
+
+        labels: {
+
+          usePointStyle: true,
+
+          padding: 25,
+
+          font: {
+
+            size: 14,
+
+            weight: '600'
+
+          }
+
+        }
+
+      }
+
+    }
+
+  };
+
   constructor(
+
     private dashboardService: DashboardService
+
   ) {}
+
+  // =========================================
+  // INIT
+  // =========================================
 
   ngOnInit(): void {
 
     this.loadDashboard();
 
+    this.loadRecentActivities();
+
   }
 
-  loadDashboard() {
+  // =========================================
+  // LOAD DASHBOARD DATA
+  // =========================================
+
+  loadDashboard(): void {
 
     this.dashboardService
+
       .getDashboardData()
 
       .subscribe({
@@ -93,42 +204,81 @@ export class DashboardComponent implements OnInit {
 
           this.dashboardData = res;
 
-          // ✅ UPDATE CHART
+          // ✅ UPDATE PIE CHART DATA
+
           this.pieChartData = {
 
             labels: this.pieChartLabels,
 
             datasets: [
 
-  {
+              {
 
-    data: [
+                data: [
 
-      res.completedTasks,
+                  res.completedTasks,
 
-      res.pendingTasks,
+                  res.pendingTasks,
 
-      res.inProgressTasks
+                  res.inProgressTasks
 
-    ],
+                ],
 
-    backgroundColor: [
+                backgroundColor: [
 
-      '#10b981',
+                  '#10b981',
 
-      '#f59e0b',
+                  '#f59e0b',
 
-      '#3b82f6'
+                  '#3b82f6'
 
-    ],
+                ],
 
-    borderWidth: 0
+                hoverBackgroundColor: [
+
+                  '#059669',
+
+                  '#d97706',
+
+                  '#2563eb'
+
+                ],
+
+                borderWidth: 0
+
+              }
+
+            ]
+
+          };
+
+        },
+
+        error: (err) => {
+
+          console.log(err);
+
+        }
+
+      });
 
   }
 
-]
+  // =========================================
+  // LOAD RECENT ACTIVITIES
+  // =========================================
 
-          };
+  loadRecentActivities(): void {
+
+    this.dashboardService
+
+      .getRecentActivities()
+
+      .subscribe({
+
+        next: (res: any) => {
+
+          this.recentActivities = res;
 
         },
 
